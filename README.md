@@ -4,7 +4,8 @@ I write it to improve my c++ skill.
 In this case no class, no generic programming .
 But, I make extensive use of lambda funcion for the primitive.
 
-'''c++
+'''
+
     primitives["*"] = []() {
         int b = data_stack.top(); data_stack.pop();
         int a = data_stack.top(); data_stack.pop();
