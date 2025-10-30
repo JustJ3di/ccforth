@@ -85,7 +85,7 @@ void init_primitives() {
         data_stack.push(a / b);
     };
 
-    primitives["-"] = []() {
+    primitives["*"] = []() {
         int b = data_stack.top(); data_stack.pop();
         int a = data_stack.top(); data_stack.pop();
         data_stack.push(a * b);
