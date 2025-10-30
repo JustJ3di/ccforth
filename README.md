@@ -14,7 +14,10 @@ But, I make extensive use of lambda funcion for the primitive.
 
 '''
 
-For the primitive it is used std::map<std::string,void()> 
-
-Also for the word that are defined by user it is used std::map<std::string,std::vector<std::string>>> 
-
+For the primitive it is used 
+''' 
+std::map<std::string,void()> 
+'''
+Also for the word that are defined by user it is used '''
+std::map<std::string,std::vector<std::string>>> 
+'''
