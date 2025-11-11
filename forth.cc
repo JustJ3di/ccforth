@@ -53,6 +53,32 @@ void interpret_token(const std::string &tok, std::istringstream &iss) {
         return;
     }
 
+    if (tok == ".\"") {
+        char c;
+        std::string str_to_print;
+        // Read until the closing double quote or end of stream
+        while (iss.get(c) && c != '"') {
+            str_to_print += c;
+        }
+        std::cout << str_to_print;
+        return;
+    }
+
+    if (tok == "IF") {
+        if (data_stack.empty()) throw std::runtime_error("IF needs a flag");
+        int flag = data_stack.top(); data_stack.pop();
+        std::string next_word;
+        if (iss >> next_word) {
+
+            if (flag != 0) { // If TRUE (non-zero)
+                execute(next_word);
+            }
+            // If FALSE (0), we just skip the next word
+        }
+        return;
+    }
+
+
     std::cerr << "Unknown word: " << tok << "\n";
 }
 
