@@ -128,6 +128,44 @@ void init_primitives() {
         data_stack.pop();
     };
 
+    primitives["rot"] = []() {
+        int n3 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        int n1 = data_stack.top(); data_stack.pop();
+        data_stack.push(n2);data_stack.push(n3);data_stack.push(n1);
+    };
+
+    primitives["mod"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        if(n2%n1==0) throw std::runtime_error("division by zero");
+        data_stack.push(n2%n1);
+    };
+
+    primitives["<"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push({n1 < n2 ? 0 : -1});
+    };
+
+    primitives[">"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push({n1 > n2 ? 0 : -1});
+    };
+
+    primitives["="] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1 == n2 ? 0 : -1);
+    };
+
+    primitives["<>"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1 != n2 ? 0 : -1);
+    };
+
     primitives[".s"] = [](){
         
         std::vector<int> temp;
