@@ -70,28 +70,28 @@ void init_primitives() {
     //MATH
 
     primitives["+"] = []() {
-        int b = data_stack.top(); data_stack.pop();
-        int a = data_stack.top(); data_stack.pop();
-        data_stack.push(a + b);
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1 + n2);
     };
 
     primitives["-"] = []() {
-        int b = data_stack.top(); data_stack.pop();
-        int a = data_stack.top(); data_stack.pop();
-        data_stack.push(a - b);
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n2 - n1);
     };
 
     primitives["/"] = []() {
-        int b = data_stack.top(); data_stack.pop();
-        int a = data_stack.top(); data_stack.pop();
-        if(b==0) throw std::runtime_error("division by zero");
-        data_stack.push(a / b);
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        if(n2==0) throw std::runtime_error("division by zero");
+        data_stack.push(n2 / n1);
     };
 
     primitives["*"] = []() {
-        int b = data_stack.top(); data_stack.pop();
-        int a = data_stack.top(); data_stack.pop();
-        data_stack.push(a * b);
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1 * n2);
     };
 
     primitives["mod"] = []() {
@@ -140,15 +140,15 @@ void init_primitives() {
 
     //STACK MANIPULATION
     primitives["dup"] = []() {
-        int a = data_stack.top();
+        int n = data_stack.top();
         data_stack.push(a);
     };
 
     primitives["swap"] = []() {
-        int a = data_stack.top(); data_stack.pop();
-        int b = data_stack.top(); data_stack.pop();
-        data_stack.push(a);
-        data_stack.push(b);
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1);
+        data_stack.push(n2);
     };
 
     primitives["drop"] = [](){
@@ -157,9 +157,9 @@ void init_primitives() {
 
     primitives["over"] = [](){
         if(data_stack.size()<2) throw std::runtime_error("over needs 2 elements");
-        int first=data_stack.top(); data_stack.pop();
-        int second = data_stack.top();
-        data_stack.push(first);data_stack.push(second);
+        int n1=data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top();
+        data_stack.push(n1);data_stack.push(n2);
     };
 
     primitives["rot"] = []() {
