@@ -66,6 +66,9 @@ void execute(const std::string &word) {
 
 // Setup 
 void init_primitives() {
+
+    //MATH
+
     primitives["+"] = []() {
         int b = data_stack.top(); data_stack.pop();
         int a = data_stack.top(); data_stack.pop();
@@ -91,11 +94,14 @@ void init_primitives() {
         data_stack.push(a * b);
     };
 
-    primitives["."] = []() {
-        int a = data_stack.top(); data_stack.pop();
-        std::cout << a << std::endl;
+    primitives["mod"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        if(n2%n1==0) throw std::runtime_error("division by zero");
+        data_stack.push(n2&n1);
     };
 
+    //STACK MANIPULATION
     primitives["dup"] = []() {
         int a = data_stack.top();
         data_stack.push(a);
@@ -126,11 +132,10 @@ void init_primitives() {
         data_stack.push(n2);data_stack.push(n3);data_stack.push(n1);
     };
 
-    primitives["mod"] = []() {
-        int n1 = data_stack.top(); data_stack.pop();
-        int n2 = data_stack.top(); data_stack.pop();
-        if(n2%n1==0) throw std::runtime_error("division by zero");
-        data_stack.push(n2&n1);
+    //PRINT
+    primitives["."] = []() {
+        int a = data_stack.top(); data_stack.pop();
+        std::cout << a << std::endl;
     };
 
     primitives["cr"] = [](){
