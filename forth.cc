@@ -101,6 +101,43 @@ void init_primitives() {
         data_stack.push(n2&n1);
     };
 
+    //LOGIC OPERATOR
+    primitives["<"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1<n2?0:-1);
+    };
+
+    primitives[">"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1>n2?0:-1);
+    };
+
+    primitives["="] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1==n2?0:-1);
+    };
+
+    primitives["<>"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1 != n2?0:-1);
+    };
+
+    primitives["and"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1&n2 ? 0:-1);
+    };
+
+    primitives["or"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        data_stack.push(n1|n2 ? 0:-1);
+    };
+
     //STACK MANIPULATION
     primitives["dup"] = []() {
         int a = data_stack.top();
