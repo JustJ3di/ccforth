@@ -119,6 +119,20 @@ void init_primitives() {
         data_stack.push(first);data_stack.push(second);
     };
 
+    primitives["rot"] = []() {
+        int n3 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        int n1 = data_stack.top(); data_stack.pop();
+        data_stack.push(n2);data_stack.push(n3);data_stack.push(n1);
+    };
+
+    primitives["mod"] = []() {
+        int n1 = data_stack.top(); data_stack.pop();
+        int n2 = data_stack.top(); data_stack.pop();
+        if(n2%n1==0) throw std::runtime_error("division by zero");
+        data_stack.push(n2&n1);
+    };
+
     primitives["cr"] = [](){
         std::cout<<'\n';
     };
