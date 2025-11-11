@@ -141,7 +141,7 @@ void init_primitives() {
     //STACK MANIPULATION
     primitives["dup"] = []() {
         int n = data_stack.top();
-        data_stack.push(a);
+        data_stack.push(n);
     };
 
     primitives["swap"] = []() {
